@@ -1,7 +1,7 @@
 import React from 'react';
 import pointerButton from '../images/pointer.svg';
 import plusButton from '../images/Vector.svg';
-import api from '../utils/Api'
+import api from '../utils/api'
 import Card from './Card'
 
 

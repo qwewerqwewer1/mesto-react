@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      <body className="body">
+      <div className="body">
 
         <Header />
         <div className="page">
@@ -66,7 +66,7 @@ function App() {
         <PopupWithForm title='Вы уверены?' name='deleteCard' buttonTitleSubmit='Удалить' />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-      </body>
+      </div>
     </>
   );
 }

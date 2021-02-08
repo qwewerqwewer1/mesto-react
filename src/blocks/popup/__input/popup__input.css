@@ -6,7 +6,7 @@
   width: 100%;
   color: #000000;
   margin-top: 30px;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 7px;
   outline: none;
 }
@@ -17,6 +17,6 @@
   }
 }
 
-.popup__input:invalid {
+/* .popup__input:invalid {
   border-bottom: 1px solid red;
-} 
+}  */
