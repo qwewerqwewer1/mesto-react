@@ -1,4 +1,4 @@
-export class Api {
+class Api {
   constructor({ address, token, groupId }) {
     this._address = address;
     this._token = token;
