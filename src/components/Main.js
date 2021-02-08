@@ -36,13 +36,13 @@ function Main(props) {
     <main className="main">
       <section className="profile">
         <div className="profile__position">
-          <div className="profile__avatar" style={{ backgroundImage: `url(${userAvatar})` }} onClick={props.onAvatar}></div>
+          <div className="profile__avatar" style={{ backgroundImage: `url(${userAvatar})` }} onClick={props.onEditAvatar}></div>
           <div className="profile__info">
             <div className="profile__info-container">
               <h1 className="profile__title">{userName}</h1>
               <p className="profile__subtitle">{userDescription}</p>
             </div>
-            <button type="button" className="profile__edit-button" onClick={props.onProfile}>
+            <button type="button" className="profile__edit-button" onClick={props.onEditProfile}>
               <img
                 src={pointerButton}
                 alt="ручка-редактор"
@@ -50,7 +50,7 @@ function Main(props) {
             </button>
           </div>
         </div>
-        <button type="button" className="profile__add-button" onClick={props.onAddCards}>
+        <button type="button" className="profile__add-button" onClick={props.onAddPlace}>
           <img
             alt="Плюс"
             src={plusButton}
