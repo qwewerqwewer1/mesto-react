@@ -59,7 +59,7 @@ class Api {
     })
       .then(this._checkResponse)
   }
-
+  //DELETE
   _delete(url) {
     return fetch(url, {
       method: 'DELETE',
@@ -140,4 +140,4 @@ const api = new Api({
   groupId: 'cohort-19',
 });
 
-export default Api
+export default api;
