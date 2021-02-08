@@ -140,4 +140,4 @@ const api = new Api({
   groupId: 'cohort-19',
 });
 
-export default api
+export default Api
