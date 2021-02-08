@@ -16,7 +16,7 @@ function App() {
 
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isEditAddCardsPopupOpen, setEditAddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setEditAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
 
@@ -60,7 +60,7 @@ function App() {
         <PopupWithForm title='Редактировать профиль' name='formProfile' buttonTitleSubmit='Cохранить' closePopup={closeAllPopups} openPopup={isEditProfilePopupOpen}>
           <SettingsPopupFormProfile />
         </PopupWithForm>
-        <PopupWithForm title='Добавить карточку' name='formAddCards' buttonTitleSubmit='Добавить' closePopup={closeAllPopups} openPopup={isEditAddCardsPopupOpen}>
+        <PopupWithForm title='Добавить карточку' name='formAddCards' buttonTitleSubmit='Добавить' closePopup={closeAllPopups} openPopup={isAddPlacePopupOpen}>
           <SettingsPopupFormAddCards />
         </PopupWithForm>
         <PopupWithForm title='Вы уверены?' name='deleteCard' buttonTitleSubmit='Удалить' />
