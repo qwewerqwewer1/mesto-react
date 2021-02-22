@@ -1,3 +1,4 @@
+// IMPORTS
 import React from 'react';
 import '../index.css';
 import api from '../utils/api';
@@ -7,17 +8,17 @@ import Main from './Main'
 import Footer from './Footer'
 
 import PopupWithForm from './PopupWithForm'
-import SettingsPopupFormAvatar from './SettingsPopupsForms/SettingsPopupFormAvatar'
-import SettingsPopupFormAddCards from './SettingsPopupsForms/SettingsPopupFormAddCards'
+import EditAvatarPopup from './EditAvatarPopup'
+import AddPlacePopup from './AddPlacePopup'
 import ImagePopup from './ImagePopup'
 import EditProfilePopup from './EditProfilePopup'
 
-//Imports 11 pro
+// Сontexts ↑ 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
+// FUNCTION APP in ROOT
 function App() {
-
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setEditAddPlacePopupOpen] = React.useState(false);
@@ -47,6 +48,7 @@ function App() {
       });
   }, []);
 
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     const likeRequest = !isLiked ? api.setLike(card._id) : api.delLike(card._id);
@@ -68,6 +70,8 @@ function App() {
         console.log(err);
       });
   }
+
+
   //////////////////////////ЗЕЛЕНАЯ КНИГА ПОСМОТРЕТЬ ФИЛЬМ
 
   function handleEditAvatarClick() {
@@ -104,28 +108,68 @@ function App() {
       });
   }
 
+  function handleUpdateAvatar(link) {
+    api.setAvatar(link.avatar)
+      .then((newUser) => {
+        setCurrentUser(newUser);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleAddPlace(card) {
+    api.postCard(card.name, card.link)
+      .then((postCard) => {
+        setCards([postCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
 
         <div className="body">
-          <Header />
           <div className="page">
-            <Main cards={cards} onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardDelete={handleCardDelete} onCardClick={handleCardClick} onCardLike={handleCardLike} />
+            <Header />
+            <Main
+              cards={cards}
+              onEditAvatar={handleEditAvatarClick}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onCardDelete={handleCardDelete}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike} />
             <Footer />
           </div>
 
-          <PopupWithForm title='Обновить Аватар' name='formPhoto' buttonTitleSubmit='Cохранить' closePopup={closeAllPopups} openPopup={isEditAvatarPopupOpen}>
-            <SettingsPopupFormAvatar />
-          </PopupWithForm>
+          <EditAvatarPopup
+            openPopup={isEditAvatarPopupOpen}
+            closePopup={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar} />
 
-          <EditProfilePopup openPopup={isEditProfilePopupOpen} closePopup={closeAllPopups} onUpdateUser={handleUpdateUser} />
+          <EditProfilePopup
+            openPopup={isEditProfilePopupOpen}
+            closePopup={closeAllPopups}
+            onUpdateUser={handleUpdateUser} />
 
-          <PopupWithForm title='Добавить карточку' name='formAddCards' buttonTitleSubmit='Добавить' closePopup={closeAllPopups} openPopup={isAddPlacePopupOpen}>
-            <SettingsPopupFormAddCards />
-          </PopupWithForm>
-          <PopupWithForm title='Вы уверены?' name='deleteCard' buttonTitleSubmit='Удалить' />
-          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+          <AddPlacePopup openPopup={isAddPlacePopupOpen}
+            closePopup={closeAllPopups}
+            onAddPlace={handleAddPlace} />
+
+          <PopupWithForm
+            name='confirmDeleteCard'
+            title='Вы уверены?'
+            buttonTitleSubmit='Удалить' />
+
+          <ImagePopup
+            card={selectedCard}
+            onClose={closeAllPopups} />
         </div>
 
       </CurrentUserContext.Provider>
