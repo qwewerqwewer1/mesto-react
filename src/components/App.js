@@ -71,9 +71,6 @@ function App() {
       });
   }
 
-
-  //////////////////////////ЗЕЛЕНАЯ КНИГА ПОСМОТРЕТЬ ФИЛЬМ
-
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
